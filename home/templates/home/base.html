@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto Slab'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Acme|Cookie|Courgette|Cuprum|Lora|Major+Mono+Display|Satisfy|Bitter|Special+Elite|Shadows+Into+Light|ZCOOL+XiaoWei|Inconsolata|Pacifico" rel="stylesheet">    <link rel="shortcut icon" type="image/png" href="{% static 'home/images/blood_drop.png' %}">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+          type="text/css"/>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}"/>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    {% block head %}
+
+    {% endblock %}
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home:index' %}">Blood source</a>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbars"
+            aria-controls="navbars" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse collapse" id="navbars" style="">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'home:index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'home:about' %}">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'pathlab:index' %}">Path Lab</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'Hospitals:hospitals' %}">Hospitals</a>
+            </li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home:profile' %}">Profile</a>
+                </li>
+            {% endif %}
+
+        </ul>
+        <div class="col-offset-6">
+            {% if user.is_authenticated %}
+                <a href="{% url 'home:user_logout' %}" class="col-2"
+                   style="color: white;font-size: 18px">
+                    <span class="fa fa-sign-out" style="font-size: 20px;color: white"></span>&nbsp;&nbsp;Logout
+                </a>
+            {% else %}
+                <a href="{% url 'home:signup' %}" class="col-1" style="color: white;font-size: 18px">
+                    <span class="fa fa-address-book-o" style="font-size: 20px;color: white"></span>&nbsp;&nbsp;Register
+                </a>
+                <a href="{% url 'home:login' %}" class="col-1" style="color: white;font-size: 18px">
+                    <span class="fa fa-sign-in" style="font-size: 20px;color: white"></span>&nbsp;&nbsp;Login
+                </a>
+
+            {% endif %}
+        </div>
+
+    </div>
+</nav>
+
+{% block body %}
+{% endblock %}
+<script>AOS.init();</script>
+<!-- Footer -->
+<div style="height:100px;color:white" class="container-fluid"></div>
+<footer class="page-footer font-small pt-4m" id="footer" style="background-color: #333333;opacity:1;">
+
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+
+        <!-- Footer links -->
+        <div class="row text-center text-md-left mt-3 pb-3">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Blood Source</h6>
+                <p>Supported by more than thousand donors across the country, our aim is
+                    to ensure blood reaches the needy
+                    at the right time.</p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="w-100 clearfix d-md-none">
+
+
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Useful links</h6>
+                <p>
+                    <a href="{% url 'bloodcamp:volunteering' %}">Want to be a Volunteer ?</a>
+                </p>
+                <p>
+                    <a href="{% url 'bloodcamp:volunteer_list' %}">List of Volunteers</a>
+                </p>
+                <p>
+                    <a href="{% url 'home:faq' %}">FAQs</a>
+                </p>
+
+            </div>
+
+            <!-- Grid column -->
+            <hr class="w-100 clearfix d-md-none">
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                <h6 class="text-uppercase mb-4 font-weight-bold">Contact</h6>
+                <p>
+                    <i class="fa fa-home mr-3"></i>Agra, Uttar Pradesh</p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> 29riyajain@gmail.com</p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i>08755288618</p>
+                <p>
+                    <i class="fa fa-print mr-3"></i>0987126543</p>
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Footer links -->
+
+        <hr>
+
+        <!-- Grid row -->
+        <div class="row d-flex align-items-center">
+
+            <!-- Grid column -->
+            <div class="col-md-7 col-lg-8">
+
+                <!--Copyright-->
+                <p class="text-center text-md-left">© 2018 Copyright:
+                    <a href="{% url 'home:index' %}">
+                        <strong> BloodSource.com</strong>
+                    </a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-5 col-lg-4 ml-lg-0">
+
+                <!-- Social buttons -->
+                <div class="text-center text-md-right">
+                    <ul class="list-unstyled list-inline">
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="btn-floating btn-sm rgba-white-slight mx-1">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+</footer>
+<!-- Footer -->
+{#</div>#}
+</body>
+</html>

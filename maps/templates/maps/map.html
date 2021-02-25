@@ -1,0 +1,112 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head %}
+    <title>Find a potential donor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background : url('images/map.jpg')
+        }
+
+        #map {
+            height: 500px;
+            {#float: right;#}
+            margin-top: 50px;
+
+        }
+
+    </style>
+{% endblock %}
+{% block body %}
+        <div class="row">
+        <div id="output" class="col-sm-7 offset-1">
+    <div id="map">    </div>
+    <script>
+      var map;
+      var markers = [];
+      function initMap() {
+        var center = {lat: 13.000000, lng: 79.000000};
+        var latitudes={{lat|safe}}
+        var longitudes={{lng|safe}}
+        var path_labs={{names|safe}}
+
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          mapTypeId: 'terrain'
+        });
+
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(function(position) {
+						var pos = {
+							lat: position.coords.latitude,
+							lng: position.coords.longitude
+						};
+            var temp=0;
+            var arr=[]
+            lati=position.coords.latitude
+            longi=position.coords.longitude
+            var x=((latitudes[0]-lati)*(latitudes[0]-lati))+((longitudes[0]-longi)*(longitudes[0]-longi));;
+            for (i = 1, len = latitudes.length; i < len; i++) {
+            y=((latitudes[i]-lati)*(latitudes[i]-lati))+((longitudes[i]-longi)*(longitudes[i]-longi));
+            arr.push(y)
+            if(y<x){
+              temp=i;
+              x=y;
+            }
+            }
+            document.getElementById('short').innerHTML= path_labs[temp];
+            var latlng = {lat: latitudes[temp],lng: longitudes[temp]};
+            addMarker(latlng,path_labs[temp]);
+						map.setCenter(pos);
+			var url = "http://maps.google.com/mapfiles/ms/icons/";
+  		    url += "blue-dot.png";
+            var marker = new google.maps.Marker({
+          position: pos,
+                    icon: {
+      		url: url
+    	  },
+          animation: google.maps.Animation.BOUNCE,
+          title: 'Current Location'
+        });
+          marker.setMap(map);
+					}, function() {
+						handleLocationError(true, infoWindow, map.getCenter());
+					});
+				} else {
+					handleLocationError(false, infoWindow, map.getCenter());
+				}
+
+      }
+
+      function addMarker(location,name) {
+        var url = "http://maps.google.com/mapfiles/ms/icons/";
+  		url += "yellow-dot.png";
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          title: name,
+          animation: google.maps.Animation.BOUNCE,
+          icon: {
+      		url: url
+    	  }
+        });
+        marker.setMap(map);
+      }
+      
+    </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU_kJ3UUPCV-HLOaTfDf9zfqBBAXQ0VHE&callback=initMap"></script>
+
+            </div>
+            <div class="col-sm-3" >
+            <br><br><br><br><br>
+                    <h2><br> Nearest BloodBank : </h2>
+    				<h3 id="short" style =text-size:16px"> Hello. </h3>
+        </div>
+        </div>
+{% endblock %}

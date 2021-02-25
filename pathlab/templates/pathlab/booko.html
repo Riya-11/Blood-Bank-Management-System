@@ -1,0 +1,31 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+{% block head %}
+<title>Pathlab | Book Bloodtest</title>
+{% endblock %}
+
+{% block body %}
+<body style="background-color: rgba(10%, 10%, 100%, 0.15)">
+    <div>
+        <br><br>
+        <div class="container bodysize justify-content-left">
+          <div class="row col-12">
+
+        <h2 style="">Please choose the test to conduct</h2>
+        <div style="width: 60%">
+
+            <form method="post" action= "{% url 'pathlab:result' %}"  id="book" style="margin: 100px;">
+
+                {% csrf_token %}
+
+                {{ form|crispy }}
+                       <br><br><br>
+                <tr><label><button class="btn btn-success" type="submit">Request</button></label></tr>
+
+            </form>
+
+        </div>
+    </div>
+    </div>
+</body>
+{% endblock %}

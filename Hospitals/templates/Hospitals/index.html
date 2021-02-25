@@ -1,0 +1,18 @@
+{% extends 'home/base.html' %}
+{% block title %}
+Partner Hospitals
+{% endblock %}
+
+
+
+{% block body %}
+<body style = "background-color: rgba(10%, 10%, 100%, 0.3)">
+<h2 style="margin-top: 50px; margin-left: 20px; font-size: 50px">Partner Hospitals</h2>
+<div style="margin-bottom: 100px; margin-left: 20px;">
+    {% for hospital in hospitals %}
+    <dt>{{ hospital.Hospital_name }}</dt>
+    <dd>Address: {{ hospital.Hospital_address }}</dd>
+    {% endfor %}
+</div>
+</body>
+{% endblock %}

@@ -1,0 +1,97 @@
+{% extends 'home/base.html' %}
+{% block head %}
+    {% load staticfiles %}
+    <title>Pathology Lab</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'pathlab/styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pathlab/styles/responsive.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'pathlab/styles/background.css' %}"> -->
+
+    <style>
+        .carousel-inner img {
+            width: 100%;
+            height: 500px;
+        }
+
+        #n2 {
+            background: #ff944d;
+            height: 340px;
+
+        }
+
+        #head {
+            font-family: 'Roboto Slab', cursive;
+            font-size: 70px;
+            padding: 100px;
+            color: white;
+        }
+
+    </style>
+{% endblock %}
+
+{% block body %}
+{#    <div class="container-fluid" id="n2">#}
+{#        <p class="text-center" id="head">BloodSource</p>#}
+{#    </div>#}
+
+<div class="home" style="height:600px">
+		<div class="background_image" style = "background-image: url('http://www.pathlabs.co.za/images/Use3.jpg')"></div>
+
+
+{#		<header class="header" id="header">#}
+{#			<div>#}
+{#			</div>#}
+{#		</header>#}
+
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content">
+							<div class="home_title">Pathology Lab</div>
+							<div class="home_text">A simple Blood Test can diagnose infections in your body and help you treat better. Get your blood tested at your home and get results online.</div><br>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="info" style="background-color: rgba(10%, 10%, 100%, 0.15)">
+		<div class="container">
+			<div class="row row-eq-height">
+
+				<div class="col-lg-4 info_box_col">
+					<div class="info_box" style="height: 450px; background-color: rgba(10%, 10%, 100%, 0.3)">
+						<div class="info_image"><img src="http://www.familyhealth.in/wp-content/uploads/2018/08/path-lab.jpg" alt="" style="height: 250px;width: 100%"></div>
+						<div class="info_content">
+							<div class="info_title">Book a Blood Test </div><br><br>
+							<div class="btn btn-success"><a href="{% url 'pathlab:booko' %}" style="color: white">Book</a></div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <p style="padding-right: 300px"></p> -->
+
+				<div class="col-lg-4 info_box_col">
+					<div class="info_box" style="height: 450px; background-color: rgba(10%, 10%, 100%, 0.3)">
+						<div class="info_image"><img src="data:image/png;base64,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" alt="" style="height: 250px;width: 100%"></div>
+						<div class="info_content">
+							<div class="info_title">History of booked Blood Tests</div><br><br>
+							<div class="btn btn-success"><a href="{% url 'pathlab:history' %}" style="color: white">Display</a></div>
+						</div>
+					</div>
+				</div>
+
+        <div class="col-lg-4 info_box_col">
+					<div class="info_box" style="height: 450px; background-color: rgba(10%, 10%, 100%, 0.3)">
+						<div class="info_image"><img src="https://img.icons8.com/color/1600/google-maps.png" alt="" style="height: 250px;width: 100%"></div>
+						<div class="info_content">
+							<div class="info_title">Locate Pathology Labs Near You</div><br><br>
+							<div class="btn btn-success"><a href="{% url 'maps:pathlab' %}" style="color: white">Locate</a></div>
+						</div>
+					</div>
+				</div>
+</div>
+</div>
+
+{% endblock %}

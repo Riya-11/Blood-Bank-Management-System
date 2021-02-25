@@ -1,0 +1,127 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+  <style>
+
+      .box {
+          width: 580px;
+          height: 670px;
+          background: white;
+              box-shadow: 0px 3px 20px black;
+          font-size: 7px;
+
+      }
+
+
+
+      .table123 {
+             font-family:  sans-serif;
+             border-collapse: collapse;
+             width: 100%;
+          font-size: 150%;
+      }
+
+        .table123 td, .table123 th {
+
+            padding: 8px;
+            font-size: 150%;
+            }
+
+        .table123 tr:nth-child(even){background-color: #f2f2f2;}
+
+        .table123 tr:hover {background-color: #ddd;}
+
+        .table123 th {
+             border: 1px solid #ddd;
+            padding: 25px;
+            {#font-size: 150%;#}
+
+            text-align: center;
+            background-color:#a31846
+;
+            color: white;
+            }
+
+
+  </style>
+
+{% endblock %}
+
+{% block body %}
+ &nbsp
+&nbsp
+&nbsp
+  <center>
+   <div class="box" >
+
+        <form    action="" method="post">
+         <table class="table123">
+             <tr><th colspan="2">VOLUNTEER REGISTRATION</th></tr>
+    <tr>
+
+      <td >Name:</td>
+        <td> {{volunteer.name}}</td>
+
+    </tr>
+               <tr>
+
+      <td >nick Name:</td>
+        <td> {{volunteer.nickname}}</td>
+
+    </tr>
+
+
+    <tr>
+      <td>Email:</td>
+      <td>{{volunteer.email}}</td>
+    </tr>
+    <tr>
+      <td >State:</td>
+      <td>{{volunteer.state}}</td>
+    </tr>
+    <tr>
+      <td >City:</td>
+      <td>{{volunteer.city}}</td>
+    </tr>
+    <tr>
+      <td >Locality:</td>
+      <td>{{volunteer.locality}}</td>
+    </tr>
+    <tr>
+      <td >Land-Mark:</td>
+      <td>{{volunteer.landmark}}</td>
+    </tr>
+    <tr>
+      <td >House:</td>
+      <td>{{volunteer.house}}</td>
+    </tr>
+    <tr>
+      <td >Phone:</td>
+      <td>{{volunteer.phone}}</td>
+    </tr>
+    <tr>
+      <td >Gender:</td>
+      <td>{{volunteer.gender}}</td>
+    </tr>
+    <tr>
+      <td >Blood:</td>
+      <td>{{volunteer.blood}}</td>
+    </tr>
+    <tr>
+      <td >Blood Camp:</td>
+      <td>{{volunteer.bloodcamp}}</td>
+    </tr>
+    <tr style="color: white">
+
+        <td colspan="2"   ><center><input type="submit" value="Submit" class="btn btn-outline-success"  ></center></td>
+    </tr>
+  </table>
+  {% csrf_token %}
+
+  </form>
+   </td>
+        </tr>
+    </div>s
+</center>
+{% endblock %}

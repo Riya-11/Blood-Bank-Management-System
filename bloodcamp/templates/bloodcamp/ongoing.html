@@ -1,0 +1,32 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <title>Upcoming</title>
+    <link rel="stylesheet" type="text/css" href="{% static "camps.css" %}"
+{% endblock %}
+{% block body %}
+    <a href="{% url 'bloodcamp:camphome' %}" style="text-decoration:none;color:#701B05" ><h2>&#8592Back</h2></a>
+    <h1 class="heading">Ongoing Camps</h1><br>
+    {% if camps %}
+    <table class="camps">
+      <tr>
+        <th>CampID</th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+        <th>location</th>
+      </tr>
+      {% for camp in camps %}
+        <tr>
+        <td>{{ camp.campid }}</td>
+        <td>{{ camp.startdate }}</td>
+        <td>{{ camp.enddate }}</td>
+        <td>{{ camp.location }}</td>
+        </tr>
+      {% endfor %}
+     </table>
+    {% else %}
+        <br><br>
+        <h2>No Ongoing Camps</h2>
+    {% endif %}
+{% endblock %}

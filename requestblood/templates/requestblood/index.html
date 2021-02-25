@@ -1,0 +1,72 @@
+{% extends 'home/base.html' %}
+{% block head %}
+<title>Request blood</title>
+<!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+<style>
+.donate{
+  text-align:left;
+  font-size:20px;
+  margin: 0 auto;
+  width:500px;
+  margin: 100px
+
+}
+body{
+ background-color:rgba(123,12,35,0.5)
+
+}
+.btn:hover{
+background-image:none;
+background-color:#36688D;
+}
+.field{
+
+}
+.field:focus {
+  background-color: lightblue;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+<center><h1 style="margin-top: 100px;font-family:Roboto Slab" data-aos="fade-right" data-aos-duration="500" data-aos-easing="ease-in-sine">Post your request here</h1>
+    <hr style=" border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));">
+    <form action="" class="donate jumbotron" method="post" id="find" data-cities-url="{% url 'finddonor:ajax_load_cities' %}" style="background:white !important;margin: 100px;">
+    {% csrf_token %}
+    {% for field in form %}
+
+        {{ field.errors }}<br>
+        {{ field.label_tag }}
+        {{ field }}<br>
+
+    {% endfor %}
+    <label>Blood group</label>
+    <input type="text"  name="blood" value="{{ blood }}" readonly="readonly">
+    <br>
+    <button class="btn btn-success" type="submit">Request</button>
+    </form>
+    </center>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    {% csrf_token %}
+  <script>
+    $("#id_state").change(function () {
+      var url = $("#find").attr("data-cities-url");  // get the url of the `load_cities` view
+      var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({
+        type:"POST",// initialize an AJAX request
+        url: '/find-donor/ajax/load-cities/',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+        data: {
+          'state': stateId,csrfmiddlewaretoken:'{{ csrf_token }}'     // add the country id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+        }
+      });
+
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <title>CAMPS</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css">
+{% endblock %}
+{% block body %}
+    <header class="w3-container w3-padding" style="background-color:#E2DCDC">
+    <div class="w3-center">
+    <p style="font-size:70px">BloodCamps</p>
+    </div>
+    </header>
+    <div class="w3-row-padding w3-center w3-margin-top" style="">
+    <div class="w3-third">
+      <div class="w3-card w3-container" style="min-height:460px">
+      <a href="{% url 'bloodcamp:history' %}" style="text-decoration:none"><h3>History</h3><br>
+      <img src="{% static "history.jpg" %}" class="w3-margin-bottom w3-text-theme" style="font-size:120px;width:200px;height:200px">
+      <p>Details of the past blood camps</p>
+      <p>Details of the donors in that camp</p></a>
+      </div>
+    </div>
+
+    <div class="w3-third">
+    <div class="w3-card w3-container" style="min-height:460px">
+    <a href="{% url 'bloodcamp:upcoming' %}" style="text-decoration:none"><h3>Upcoming</h3><br>
+    <img src="{% static "upcoming.jpg" %}" class=" w3-margin-bottom w3-text-theme" style="font-size:120px;width:200px;height:200px">
+    <p>Details of Upcoming Camps</p></a>
+    <a href="{% url 'bloodcamp:newdonorpage' %}" style="text-decoration:none"><p>Pre-registration for that camps </p></a>
+    </div>
+  </div>
+
+  <div class="w3-third">
+    <div class="w3-card w3-container" style="min-height:460px">
+    <a href="{% url 'bloodcamp:ongoing' %}" style="text-decoration:none"><h3>Ongoing</h3><br>
+    <img src="{% static "ongoing.jpg" %}" class="w3-margin-bottom w3-text-theme" style="font-size:120px;width:200px;height:200px">
+    <p>Details of the Ongoing Camps</p>
+    </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

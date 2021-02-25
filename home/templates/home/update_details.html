@@ -1,0 +1,70 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block head %}
+<title>webpage</title>
+<style media="screen">
+  .bodysize {background-color: rgba(145,40,40,0.6);
+    color:white;
+    height : 1000px;
+    width: 500px;
+    margin-top: 60px;
+  }
+  </style>
+  {% endblock %}
+
+
+
+{% block body %}
+<div class="container bodysize">
+<form class="form" action="{% url 'home:update_details' %}" method="post">
+  <table class="table">
+    <tr>
+      <td>First Name:</td>
+      <td>{{userform.first_name}}</td>
+    </tr>
+    <tr>
+      <td>Last Name:</td>
+      <td>{{userform.last_name}}</td>
+    </tr>
+    <tr>
+      <td>State:</td>
+      <td>{{addressform.state}}</td>
+    </tr>
+    <tr>
+      <td>City:</td>
+      <td>{{addressform.city}}</td>
+    </tr>
+    <tr>
+      <td>Locality:</td>
+      <td>{{addressform.locality}}</td>
+    </tr>
+    <tr>
+      <td>Land-Mark:</td>
+      <td>{{addressform.landmark}}</td>
+    </tr>
+    <tr>
+      <td>House:</td>
+      <td>{{addressform.house}}</td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td>{{addressform.phone}}</td>
+    </tr>
+    <tr>
+      <td>Birth:</td>
+      <td>{{addressform.birth}}</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" value="Submit" class="btn btn-outline-success"></td>
+    </tr>
+
+  </table>
+{% csrf_token %}
+</form>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 80%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+    <title></title>
+  </head>
+  <body>
+  <center>
+    {% if user.is_authenticated %}
+    <h1 style="color: hsl(0, 100%, 50%);"> History of Transactions  </h1>
+    <table>
+      <tr>
+        <th> Date </th>
+        <th> Initial Credit </th>
+        <th> After Credit </th>
+        <th> credit Recevied </th>
+        <th> Organisation </th>
+      </tr>
+      <tr>
+	    {% for coin in coins %}
+		<td>{{ coin.date.date }}</td>
+		<td>{{ coin.initialcredit }}</td>
+		<td>{{ coin.aftercredit }}</td>
+		<td>{{ coin.getcredit }}</td>
+		<td>{{ coin.organisation }}</td>
+	  </tr>
+		{% endfor %}
+	{% endif %}
+	</center>
+  </body>
+</html>
+

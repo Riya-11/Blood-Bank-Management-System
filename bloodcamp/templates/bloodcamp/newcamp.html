@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>New Camp</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Camp Details</h1>
+      <form method="POST">
+        {{ form.as_p}}
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

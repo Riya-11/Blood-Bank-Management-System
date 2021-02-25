@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>MTV</title>
+{#    <link rel="stylesheet" href="{% static 'css/random.css' %}"/>#}
+  </head>
+  <body>
+    <center>
+    <h2>Here is your data</h2>
+
+    <div class="django">
+          {% if available  %}
+
+            {% for av in available %}
+           <p> Amount of A+  :: {{av.bloodgroup_A_plus}}</p>
+           <p> Amount of A-  :: {{av.bloodgroup_A_minus}}</p>
+           <p> Amount of B+  :: {{av.bloodgroup_B_plus}}</p>
+           <p> Amount of B-  :: {{av.bloodgroup_B_minus}}</p>
+           <p> Amount of AB+ :: {{av.bloodgroup_AB_plus}}</p>
+           <p> Amount of AB- :: {{av.bloodgroup_AB_minus}}</p>
+           <p> Amount of O+  :: {{av.bloodgroup_O_plus}}</p>
+           <p> Amount of O-  :: {{av.bloodgroup_O_minus}}</p>
+            {% endfor %}
+            
+          {% endif %}
+
+          {% if user %}
+            {% for t in userdata %}
+              <p>{{ t.user.username }}</p>
+            {% endfor %}
+          {% endif %}
+    </div>
+    <a href="{% url 'stock:sendingmail' %} "><input type="button" name="redirect" value="SEND" ></a>
+    </center>  
+  </body>
+</html>

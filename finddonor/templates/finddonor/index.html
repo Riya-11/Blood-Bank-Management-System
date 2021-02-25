@@ -1,0 +1,157 @@
+{% extends 'home/base.html' %}
+{% load crispy_forms_tags %}
+{% load staticfiles %}
+{% block head %}
+    <title>Find a potential donor</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'finddonor/style.css' %}">
+
+{% endblock %}
+{% block body %}
+        <div class="row">
+        <div id="output" class="col-sm-7 offset-1">
+        {% if result.count == 0 %}
+            <h2 style="margin-top:100px">Sorry no donors found near you</h2>
+
+        {% elif result.count > 0 and show %}
+
+            <script>
+                var locations = []
+                var address = []
+                var lat, lng
+
+            </script>
+
+
+            <div id="content">
+                    <h2>Donors near you:</h2>
+                    {% for donor in result %}
+
+                        <script>address.push('{{ donor.house }}' + ', ' + '{{ donor.locality }}' + ', ' +  '{{ donor.city }}' + ', ' +  '{{ donor.state }}')</script>
+                        <dt>{{ donor.user.username }}
+                        <dd>
+                            Address: {{ donor.house }},{{ donor.locality }},{{ donor.city }},{{ donor.state }}
+                        </dd>
+
+                        </dt>
+
+                        {#Map Thingy#}
+
+                    {% endfor %}
+            </div>
+
+            <div id = "map"> </div>
+
+            <script>
+
+                console.log(address)
+
+                function initMap() {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 1,
+                        center: new google.maps.LatLng(28, 77),
+                        // mapTypeId: google.maps.MapTypeId.ROADMAP
+                    });
+
+                    {#document.getElementById('submit').addEventListener('click', function () {#}
+
+                        for (i = 0; i < address.length; i++) {
+                            var geocoder = new google.maps.Geocoder();
+                            var add = address[i]
+                            geocodeAddress(geocoder, add, map);
+
+                        }
+                    {#});#}
+
+
+                }
+
+
+                function geocodeAddress(geocoder, add, map) {
+                    geocoder.geocode({'address': add}, function (results, status) {
+
+                        lat = results[0].geometry.location.lat()
+                        lng = results[0].geometry.location.lng()
+
+
+                        // locations = [
+                        //   [add, lat, lng]
+                        // ];
+
+                        locations.push(
+                            [add, lat, lng]
+                        );
+                        console.log(locations)
+                        // return locations
+
+
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 8,
+                            center: new google.maps.LatLng(locations[0][1], locations[0][2]),
+                            mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
+                        console.log('Here', locations)
+                        var infowindow = new google.maps.InfoWindow({});
+
+                        var marker, i;
+
+                        for (i = 0; i < locations.length; i++) {
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                                map: map,
+                            });
+                            console.log(locations[i][0])
+                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                return function () {
+                                    infowindow.setContent(locations[i][0]);
+                                    infowindow.open(map, marker);
+                                }
+                            })(marker, i));
+                        }
+
+                    });
+
+                }</script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU_kJ3UUPCV-HLOaTfDf9zfqBBAXQ0VHE&callback=initMap"></script>
+
+
+            {% endif %}
+
+            </div>
+
+            <div class="col-sm-3" >
+                <h2 style = "color: black;margin-top: 50px;" > Find donor </h2>
+                <form action = "" method = "post" id = "find" data - cities - url = "{% url 'finddonor:ajax_load_cities' %}" >
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <br>
+                <button type = "submit" class= "btn btn-success" > Search.. </button>
+                </form>
+        </div>
+
+
+        <script src = "https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+        {% csrf_token %}
+        <script>
+            $("#id_state").change(function () {
+                var url = $("#find").attr("data-cities-url");  // get the url of the `load_cities` view
+                var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+                $.ajax({
+                    type: "POST",// initialize an AJAX request
+                    url: '/find-donor/ajax/load-cities/',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                    data: {
+                        'state': stateId, csrfmiddlewaretoken: '{{ csrf_token }}'     // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                    }
+                });
+
+            });
+        </script>
+        </div>
+{% endblock %}

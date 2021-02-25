@@ -1,0 +1,97 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>History</title>
+    <link rel="stylesheet" type="text/css" href="{% static "camps.css" %}"
+  {% endblock %}
+
+{% block body %}
+    <a href="{% url 'bloodcamp:camphome' %}" style="text-decoration:none;color:#701B05" ><h2>&#8592Back</h2></a>
+    <h1 class="heading">History</h1><br>
+    {% if camps %}
+
+
+    <table class="camps">
+      <tr>
+        <th>CampID</th>
+        <th>StartDate</th>
+        <th>EndDate</th>
+        <th>location</th>
+        <th>Donators</th>
+      </tr>
+     </table>
+
+        {% for camp in camps %}
+    <table class="camps">
+        <tr>
+        <td>{{ camp.campid }}</td>
+        <td>{{ camp.startdate }}</td>
+        <td>{{ camp.enddate }}</td>
+        <td>{{ camp.location }}</td>
+          <td><button id="btn" name="{{ camp.campid }}" onclick="showdetails(this.name)">show details</button></td>
+        </tr>
+    </table>
+        <!--{% if donors %}-->
+     <div id="{{ camp.campid }}"  class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+            <table class="customers">
+                    <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Gender</th>
+                    <th>Date</th>
+                    <th>Blood</th>
+                    </tr>
+                    {% for donor in donors %}
+                    {% if donor.bloodcamp.campid == camp.campid %}
+                    <tr>
+                    <td>{{donor.firstname}}</td>
+                    <td>{{donor.lastname}}</td>
+                    <td>{{donor.email}}</td>
+                    <td>{{donor.phone}}</td>
+                    <td>{{donor.gender}}</td>
+                    <td>{{donor.date}}</td>
+                    <td>{{donor.blood}}</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+            </table>
+  </div>
+</div>
+
+      {% endif %}
+      {% endfor %}
+     </table>
+     {% else %}
+        <br><br>
+        <h2>No History Camps</h2>
+    {% endif %}
+ <script>
+// Get the modal
+
+
+// Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+var modal;
+// When the user clicks the button, open the modal
+function showdetails(name) {
+  modal = document.getElementById(name);
+    modal.style.display = "block";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+</script>
+  {% endblock %}

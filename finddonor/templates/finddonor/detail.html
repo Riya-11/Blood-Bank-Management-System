@@ -1,0 +1,17 @@
+{% extends 'home/base.html' %}
+{% block title %}
+    Donors near you
+{% endblock %}
+{% block body %}
+    <div style="margin: 200px">
+        <h2>donors near you</h2>
+        <dl>
+            {% for donor in result %}
+                <dt>{{ donor.user.username }}
+                <dd>Address: {{ donor.city }},{{ donor.state }}</dd>
+
+                </dt>
+            {% endfor %}
+        </dl>
+    </div>
+{% endblock %}

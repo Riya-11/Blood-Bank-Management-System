@@ -1,0 +1,94 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+<script type="text/javascript">
+    (function () {
+        if (window.localStorage) {
+            if (!localStorage.getItem('firstLoad')) {
+                localStorage['firstLoad'] = true;
+                window.location.reload();
+            }
+            else
+                localStorage.removeItem('firstLoad');
+        }
+    })();
+</script>
+    <title>New Donor</title>
+  <style media="screen">
+    .backbtn {
+        background-color: #84224b;
+        color: white;
+        padding:10px 15px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+    .backbtn:hover {
+        opacity: 1;
+    }
+    .registerbtn {
+        background-color: #36688D;
+        color: white;
+        padding: 10px 15px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+        opacity: 1;
+    }
+    form {
+      margin: 0 auto;
+      width:500px;
+    }
+    body{
+       /* background-image:url("{% static '68.jpg'%}") */
+       background-color:#54678F; 
+    }
+  </style>
+
+{% endblock %}
+{% block body %}
+<center><h1 style="color:#B5C1B4">Register as Donor</h1></center>
+<form class="jumbotron" action="" method="post">
+    {% if messages %}
+      {% for message in messages %}
+            <p style="color:rgb(255,102,123)">* {{ message }}</p>
+      {% endfor %}
+    {% endif %}
+
+      <p>First Name&ensp;&ensp;: {{form1.firstname}}</p>
+
+
+      <p>Last Name&ensp;&ensp;: {{form1.lastname}}</p>
+
+
+      <p>Email &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: {{form1.email}}</p>
+
+
+      <p>Phone&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: {{form1.phone}}</p>
+
+
+      <p>Gender&ensp;&ensp;&ensp;&ensp;&ensp;: {{form1.gender}}</p>
+
+
+      <p>Blood &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;: {{form1.blood}}</p>
+
+
+      <p>Blood Camp&ensp;: {{form1.bloodcamp}}</p>
+
+
+      <p style="padding-top:20px;"><a href="{% url 'bloodcamp:upcoming' %}"><input type="button" class="backbtn" value="Back"></a>
+        &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+        <input type="submit" class="registerbtn" value="Register"></p>
+
+  {% csrf_token %}
+</form>
+
+
+{% endblock %}

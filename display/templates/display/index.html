@@ -1,0 +1,41 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 30%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+    <meta charset="utf-8">
+    <title></title>
+{% endblock %}
+{% block body %}
+    <h1 style="color: hsl(0, 100%, 50%);"> History of Blood Transaction</h1>
+    <table>
+      <tr>
+        <th>User</th>
+        <th>Date</th>
+      </tr>
+      <tr>
+    {% for history in historys %}
+    {% if datenow.year == history.donation_date.year and datenow.month == history.donation_date.month %}
+        <td> {{history.user}} </td>
+        <td>{{history.donation_date.date}}</td>
+      </tr>
+    {% endif %}
+    {% endfor %}
+    </table>
+    <div style="height: 180px;"></div>
+{% endblock %}

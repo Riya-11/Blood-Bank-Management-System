@@ -1,0 +1,65 @@
+{% extends 'home/base.html' %}
+{% block head %}
+    <meta charset="utf-8">
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      background-color: rgba(10%, 10%, 100%, 0.5);
+    }
+
+    tr:nth-child(even) {
+      background-color: rgba(10%, 10%, 100%, 0.3);
+    }
+
+    tr:hover {
+      background-color: #dddddd;
+    }
+  </style>
+    <title></title>
+{% endblock %}
+{% block body %}
+  <body style="background-color: rgba(10%, 10%, 100%, 0.15)">
+
+    {% if user.is_authenticated %}
+    <h1 style="font-size: 80px; margin: 30px"> History of Blood Tests </h1>
+    <table>
+      <tr>
+        <th> Date </th>
+        <th> First Name </th>
+        <th> Last Name </th>
+        <th> Blood Group </th>
+        <th> Test Type </th>
+        <th> Result </th>
+      </tr>
+      <tr>
+
+        {% for item in result %}
+        <form action= "{% url 'pathlab:report' item.pk %}" method="post">
+        <td>{{ item.date }}</td>
+        <td>{{ item.firstname }}</td>
+        <td>{{ item.lastname }}</td>
+        <td>{{ item.bloodgroup }}</td>
+		<td>{{ item.testtype }}</td>
+        <td>{{ item.result }} {% csrf_token %} <button class="btn btn-success" type="submit">Check Report</button></td>
+	    </form>
+      </tr>
+		{% endfor %}
+	{% endif %}
+    </table>
+  </body>
+{% endblock %}
+</html>

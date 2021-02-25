@@ -1,0 +1,209 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Sign Up</title>
+
+    <!-- Icons font CSS-->
+    <link href="{% static 'home/signup/vendor/mdi-font/css/material-design-iconic-font.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'home/signup/vendor/font-awesome-4.7/css/font-awesome.min.css' %}" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="{% static 'home/signup/vendor/select2/select2.min.css' %}" rel="stylesheet" media="all">
+    <link href="{% static 'home/signup/vendor/datepicker/daterangepicker.css' %}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="{% static 'home/signup/css/main.css' %}" rel="stylesheet" media="all">
+    <script type="text/javascript">
+        function myfunct() {
+            var x = $("#id_password").val();
+            var y = $("#id_confirm_password").val();
+            //var date2 = document.getElementById("date").value;
+            if (x != y) {
+                document.getElementById('ide').innerHTML ="Password and confirmed password didn't match";
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        (function () {
+            if (window.localStorage) {
+                if (!localStorage.getItem('firstLoad')) {
+                    localStorage['firstLoad'] = true;
+                    window.location.reload();
+                }
+                else
+                    localStorage.removeItem('firstLoad');
+            }
+        })();
+    </script>
+
+</head>
+
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <p style="color:red" id="ide"></p>
+                    {% if messages %}
+                        {% for message in messages %}
+
+                                <p style="color:rgb(255,0,0)">* {{ message }}</p>
+                                <p style="margin-top:20px"></p>
+
+                        {% endfor %}
+                    {% endif %}
+                    <form name="fform" action="{% url 'requestor:index' %}" class="form" method="POST" onsubmit="return myfunct()" id = "find" data - cities - url = "{% url 'finddonor:ajax_load_cities' %}">
+                      {% csrf_token %}
+
+                      <div class="row row-space">
+                          <div class="col-2">
+                              <div class="input-group">
+                                  <label class="label">Organization name</label>
+                                  <p class="input--style-4">{{ form.first_name }}</p>
+                              </div>
+                          </div>
+                          <div class="col-2">
+                              <div class="input-group">
+                                  <label class="label">Reg. Id</label>
+                                  <p class="input--style-4">{{ landmarkform.rig }}</p>
+                              </div>
+                          </div>
+                      </div>
+
+
+                      <div class="row row-space">
+                          <div class="col-2">
+                              <div class="input-group">
+                                  <label class="label">Username</label>
+                                  <p class="input--style-4">{{ form.username }}</p>
+                              </div>
+                          </div>
+                          <div class="col-2">
+                              <div class="input-group">
+                                  <label class="label">Email</label>
+                                  <p class="input--style-4">{{ form.email }}</p>
+                              </div>
+                          </div>
+                      </div>
+
+
+                      <div class="row row-space">
+                          <div class="col-2">
+                              <div class="input-group">
+                                  <label class="label">State</label>
+                                  <p class="input--style-4">{{ landmarkform.state }}</p>
+                              </div>
+                          </div>
+                          <div class="col-2">
+                              <div class="input-group">
+                                  <label class="label">City</label>
+                                  <p class="input--style-4">{{ landmarkform.city }}</p>
+                              </div>
+                          </div>
+                      </div>
+
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Locality</label>
+                                    <p class="input--style-4">{{ landmarkform.locality }}</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Landmark</label>
+                                    <p class="input--style-4">{{ landmarkform.landmark }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Password</label>
+                                    <p class="input--style-4">{{ form.password }}</p>
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Confirm Password</label>
+                                    <p class="input--style-4">{{ form.confirm_password }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label class="label">Phone</label>
+                                    <p class="input--style-4">{{ landmarkform.phone }}</p>
+                                </div>
+                            </div>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
+                        <div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    <a href="{% url 'home:index' %}" class="offset-6"><button class="btn btn--radius-2 btn--green" type="button">Go to home page</button>
+</a>
+    </div>
+
+    <script src = "https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+        {% csrf_token %}
+        <script>
+            $("#id_state").change(function () {
+                var url = $("#find").attr("data-cities-url");  // get the url of the `load_cities` view
+                var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+                $.ajax({
+                    type: "POST",// initialize an AJAX request
+                    url: '/requestor/ajax/load-cities/',                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                    data: {
+                        'state': stateId, csrfmiddlewaretoken: '{{ csrf_token }}'     // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        $("#id_city").html(data);  // replace the contents of the city input with the data that came from the server
+                    }
+                });
+
+            });
+        </script>
+    <!-- Jquery JS-->
+    <script src="{% static 'home/signup/vendor/jquery/jquery.min.js' %}"></script>
+    <!-- Vendor JS-->
+    <script src="{% static 'home/signup/vendor/select2/select2.min.js' %}"></script>
+    <script src="{% static 'home/signup/vendor/datepicker/moment.min.js' %}"></script>
+    <script src="{% static 'home/signup/vendor/datepicker/daterangepicker.js' %}"></script>
+
+    <!-- Main JS-->
+    <script src="{% static 'home/signup/js/global.js' %}"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->

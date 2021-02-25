@@ -1,0 +1,28 @@
+{% extends 'home/base.html' %}
+{% block title %}
+    Pathlab | Test Booked
+{% endblock %}
+{% block body %}
+<body style="background-color: rgba(10%, 10%, 100%, 0.3)">
+    <div>
+        <br><br>
+        <h2 style = "margin: 50px">&nbsp;&nbsp;&nbsp;Your Test is booked<br><br>&nbsp;&nbsp;&nbsp;A confirmation e-mail has been sent to you.<br><br>&nbsp;&nbsp;&nbsp;Your bill amount is 500/-<br><br>&nbsp;&nbsp;&nbsp;You can Pay the bill now or Pay at the time of collection of blood sample.</h2>
+
+        <div style="float: left ; width: 40%">
+            <form method="post" action= "{% url 'payment-button' %}"  id="book" style="margin: 100px;">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">Pay Now</button>
+            </form>
+        </div>
+
+        <div style="float: left ; width: 60%">
+            <form method="post" action= "{% url 'pathlab:index' %}"  id="book" style="margin: 100px;">
+                {% csrf_token %}
+                <button class="btn btn-success" type="submit">Pay Later</button>
+            </form>
+        </div>
+    </div>
+    <br><br><br><br><br><br>
+</body>
+
+{% endblock %}

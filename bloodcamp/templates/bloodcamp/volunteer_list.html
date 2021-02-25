@@ -1,0 +1,44 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block head %}
+  <style media="screen">
+    {#.table{color:white;#}
+      margin-top:150px;
+      width:50%;
+
+
+    }
+  </style>
+
+{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+      {% if volunteer %}
+      <tr>
+        <th>Name</th><th>Blood Group</th><th>Camp</th><th>Joining Date</th>
+      </tr>
+      {% for volunteer in volunteer %}
+      <tr>
+        <td>{{volunteer.name}}</td><td>{{volunteer.blood}}</td><td>{{volunteer.bloodcamp}}</td>
+        <td>{{volunteer.date}}</td>
+      </tr>
+      {% endfor %}
+      {% else %}
+      <tr>
+
+        <th>There is no volunteer right now</td>
+      </tr>
+      <tr>
+
+        <td></td>
+      </tr>
+      {% endif %}
+
+    </table>
+
+<div style="height:150px;"></div>
+
+{% endblock %}

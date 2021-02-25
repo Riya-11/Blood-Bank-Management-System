@@ -1,0 +1,30 @@
+{% extends 'home/base.html' %}
+{% block head %}
+    <title>Blood Availability</title>
+{% endblock %}
+
+{% block body %}
+    <table style="margin: 80px;width: 100%" class="table table-hover table-bordered">
+        <thead>
+        <th>S.No.</th>
+        <th>Blood Group</th>
+        <th>Quantity available</th>
+        </thead>
+        {% for item in quantity %}
+
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ item.blood }}</td>
+                <td>
+                    {{ item.quantity }}
+                    {% if item.quantity < item.threshold %}
+                        <br>
+                        <a href="{% url 'requestblood:index' item.blood %}" class="text-center text-danger">*Request a donor</a>
+                    {% endif %}
+                </td>
+            </tr>
+
+        {% endfor %}
+
+    </table>
+{% endblock %}

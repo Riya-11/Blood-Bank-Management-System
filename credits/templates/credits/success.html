@@ -1,0 +1,9 @@
+{% extends 'home/base.html' %}
+{% block body %}
+   {% if user.is_authenticated %}
+	<br>
+	<br>
+	<h1>TRANSACTION SUCCESSFUL</h1>
+	{% endif %}
+    <a href="{% url 'credits:index' %}"><button type="button">Go back to wallet</button></a>
+  {% endblock %}

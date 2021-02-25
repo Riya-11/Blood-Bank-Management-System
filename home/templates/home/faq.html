@@ -1,0 +1,135 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block head %}
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      body{
+        font-family: sans-serif;
+        padding: 0;
+        margin: 0;
+		background-image: url("{% static 'home/images/faq.jpg' %}");
+		background-size:cover;
+		background-repeat:no-repeat;
+
+      }
+      #main--header{
+		border-radius: 25px;
+        background:  #a31846;
+        width: 900px;
+        height: 16vh;
+		margin-top: 60px;
+          margin-left: 309px;
+          box-shadow: 0px 3px 20px rgba(0, 0, 0, .5);
+      }
+      .chat--box {
+        width: 900px;
+        height: 1800px;
+        background:  #4E4E50;
+        box-shadow: -1px 0px 10px rgba(0, 0, 0, .6);
+        text-align: left;
+      margin-top: 0px;
+	  border-radius: 25px;
+
+      }
+	  ol {
+	  color:white;
+	      font-size: 20px;
+
+	  }
+	  h3{
+
+        color:	rgb(255, 176, 71);
+
+		}
+	p{
+	 color: white;
+	 text-align:left;
+	     font-size: 20px;
+
+	}
+	#iq{
+	color:white;
+	    font-size: 60px;
+		text-align:center;
+        padding:20px;
+	}
+	  @media screen and (min-width: 420px) {
+          .chat--box {
+            display-none;
+          }
+
+}
+		</style>
+{% endblock %}
+  {% block body %}
+ <header id="main--header"><h1 id="iq">FAQs<h1></header>
+	&nbsp
+	<center>
+    <div class = "chat--box">
+      <div class = "chat--header">
+	 &nbsp&nbsp&nbsp <h3 class="ques"> Is blood donation healthy?</h3>
+	  <p>
+      	&nbsp Yes,  Blood donation is safe for healthy adults. There's no risk of  disease.
+      	&nbsp New, sterile equipment is used for each donor.
+      </p>
+	  &nbsp&nbsp&nbsp<h3>How it feels after donating blood?</h3>
+	  	 <p>Some people may feel nauseous, lightheaded, or dizzy after donating blood.</p>
+	  <h3 class="ques">Quantity of blood taken?</h3>
+	  	 <p>Approximately 500ml</p>
+	  <h3 class="ques">How often a person can donate blood?</h3>
+	   <p>Once in 56days.</p>
+	  <h3 class="ques">What can you do if you aren't eligible to donate?</h3>
+	 	 <p>If you are unable to donate, you may be able to volunteer to help recruit donors and in blood camps.</p>
+	  <h3 class="ques">Criteria for donating blood?</h3>
+
+	  <ol >
+	  <li>Be between 16 and 60 years old.</li>
+    <li> Weigh at least 45 kg.</li>
+    <li> Have a haemoglobin level of at least 12.5 g/dl (Male donor is 13.0 g/dl)</li>
+    <li> Generally be in good health.</li>
+     <li>Not have had any symptoms of infection for at least 1 week e.g. sore throat, cough, runny nose, diarrhea.</li>
+     <li>Not have had a fever in the last 3 weeks.</li>
+	 <li>you shouldn't take alcohol before 24hours.</li>
+	 </ol>
+	 <h3>What should I do after donating blood?</h3>
+	 <ol>
+	 <li>Drink an extra four glasses (eight ounces each) of non-alcoholic liquids.</li>
+	 <li>If you get dizzy or lightheaded:<br> Stop what you are doing, lie down, and raise your feet until the feeling passes and you feel well enough to safely resume activities.</li>
+	 <li>Eat healthy meals and consider adding iron-rich foods to your regular diet, or discuss taking an iron supplement with your health care provider, to replace the iron lost with blood donation.
+</li>
+	 <li>If the needle site starts to bleed, raise your arm straight up and press on the site until the bleeding stops.
+</li>
+
+	 </ol>
+	 <h3>How long will it take to replenish the of blood I donate?</h3>
+	 <p>The plasma from your donation is replaced within about 24 hours.<br>
+	 Red cells need about four to six weeks for complete replacement.<br>
+	 That’s why at least eight weeks are required between whole blood donations.</p>
+	 <h3>How does the blood donation process work?
+</h3>
+	 <p>
+
+
+		&nbsp  Donating blood is a simple thing to do, but can make a big difference in the lives of others. The donation process from the time you arrive until the time you leave takes about an hour. The donation itself is only about 8-10 minutes on average. The steps in the process are:
+
+Registration:<br>
+
+	&nbsp You will complete donor registration, which includes information such as your name, address, phone number, and donor identification number (if you have one).
+	&nbsp You will be asked to show a donor card, driver’s license or two other forms of ID.
+	&nbsp Health History and Mini Physical
+
+	&nbsp You will answer some questions during a private and confidential interview about your health history and the places you have traveled.<br>
+	&nbsp You will have your temperature, hemoglobin, blood pressure and pulse checked.<br>
+Donation:<br>
+
+	&nbsp We will cleanse an area on your arm and insert a brand–new, sterile needle for the blood draw. This feels like a quick pinch and is over in seconds.<br>
+	&nbsp You will have some time to relax while the bag is filling. (For a whole blood donation, it is about 8-10 minutes. If you are donating platelets, red cells or plasma by apheresis the collection can take up to 2 hours.<br>
+	&nbsp When approximately a pint of blood has been collected, the donation is complete and a staff person will place a bandage on your arm. <br>
+	 </p>
+	  </div>
+
+    </center>
+      </div>
+    </div>
+  {% endblock %}

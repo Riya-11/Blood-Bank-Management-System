@@ -1,0 +1,66 @@
+{% extends 'home/base.html' %}
+
+{% block head %}
+<title>Pathlab | Report</title>
+<style media="screen">
+  .bodysize {background-color: rgba(10%, 10%, 100%, 0.35);
+    color:black;
+    height : 800px;
+    width: 1280px;
+  }
+</style>
+{% endblock %}
+
+{% block body %}
+<body style="background-color: rgba(10%, 10%, 100%, 0.15)">
+<br><br><br>
+
+<div class="container bodysize justify-content-left">
+  <div class="row col-12">
+  <table class="table">
+  <br>
+
+    <tr>
+      <th><h1 style="font-size: 80px">Blood Source Pathlab</h1></th>
+    <td></td>
+    </tr>
+
+    <tr>
+        <th><h1>Blood Test Report</h1></th>
+    <td></td>
+    </tr>
+    <tr>
+    <td>First Name:</td>
+    <td>{{reports.firstname}}</td>
+    </tr>
+    <tr>
+    <td>Last Name:</td>
+    <td>{{reports.lastname}}</td>
+    </tr>
+
+    <tr>
+    <td>Date of Booking:</td>
+    <td>{{reports.date}}</td>
+    </tr>
+    <tr>
+    <td>Bloodgroup:</td>
+    <td>{{reports.bloodgroup}}</td>
+    </tr>
+    <tr>
+    <td>Test Type:</td>
+    <td>{{reports.testtype}}</td>
+    </tr>
+    <tr>
+    <td>Report:</td>
+    <td>{{reports.Result}}</td>
+    </tr>
+    <tr>
+    <td>Feedback:</td>
+    <td>{{reports.feedback}}</td>
+    </tr>
+  </table>
+
+</div>
+</div>
+
+{% endblock %}

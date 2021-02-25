@@ -1,0 +1,8 @@
+{% extends 'home/base.html' %}
+{% block head %}
+    <title>Thanks</title>
+{% endblock %}
+{% block body %}
+    <h2 style="margin: 100px">We appreciate your kindness. Thanks for donating !</h2>
+    <a href="{% url 'pathlab:index' %}"><button class="btn btn-success">Choose the pathlab</button></a>
+{% endblock %}
